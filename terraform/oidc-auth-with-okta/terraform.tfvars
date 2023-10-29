@@ -5,7 +5,6 @@
 vault_addr = "http://localhost:8200"
 
 # Okta / OIDC
-# vault read auth/oidc/config
 okta_base_url      = "okta.com"
 okta_base_url_full = "https://dev-79013989.okta.com"
 okta_client_id     = "0oad004tt3arzMJaW5d7"

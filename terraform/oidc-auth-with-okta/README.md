@@ -24,7 +24,8 @@ export VAULT_ADDR="http://127.0.0.1:8200"
 export VAULT_TOKEN="root"
 export TF_VAR_okta_client_secret="<your client secret>"
 
-# Edit roles under terraform.tfvars to map different okta groups to different Vault roles.  By default, we map admin-group to 3 roles: default, admin, power.
+# Edit roles under terraform.tfvars to map different okta groups to different Vault roles.
+# By default, we map admin-group to 3 roles: default, admin, power.
 
 terraform init
 terraform plan -out=plan
