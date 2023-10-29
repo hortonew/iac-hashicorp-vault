@@ -14,6 +14,8 @@ The [full guide is here](https://developer.hashicorp.com/vault/tutorials/auth-me
 6. Go to the Sign On tab for your application, and edit "OpenID Connect ID Token"
 7. Under "Group Claims Filter" select `Matches Regex` and add `.*` as a filter.  Save.
 8. Under Assignment, add the `admin-group`.
+9. Copy your client ID and add update okta_client_id in terraform.tfvars.
+10. Copy your client secret and add export it as `TF_VAR_okta_client_secret` (seen below).
 
 ## Configure Vault Auth
 

@@ -1,34 +1,26 @@
 # Infrastructure as Code (IAC): Hashicorp Vault
 
-This repository is a collection of methods to manage Hashicorp Vault in code.
+This repository is a collection of ways to configure Hashicorp Vault in code.
+
+I decided to make the setup of Vault a bit more complex than just running the binary because future iterations may expand on the infrastructure.  Here we use [kind](https://kind.sigs.k8s.io/) to simulate a kubernetes environment and helm to deploy Vault.
+
+The different ways to configure Vault as code are defined as "labs" below.  Each lab will be a self-contained way of configuring a specific aspect of Vault.  They can all be combined into one configuration, but it's good to isolate each concern for learning purposes.
 
 ## Prerequisites
 
-- [kind](https://kind.sigs.k8s.io/) (Kubernetes in Docker)
+- [kind](https://kind.sigs.k8s.io/)
 - [helm](https://helm.sh)
 - [vault helm chart](https://github.com/hashicorp/vault-helm)
 - [terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [jq](https://jqlang.github.io/jq/)
 
-## Configure a kubernetes cluster
+## Quickstart
 
-Modify kind_config.yaml with as many/little control plane and worker nodes as you want to work with.
-
-`kind create cluster --config k8s/kind_config.yaml`
-
-## Configure Vault
-
-Set up a dev instance of Vault using helm.  This will create a single pod where Vault is already unsealed.
+This will set up a kubernetes cluster with kind, install Vault using helm, and port forward port 8200 into the cluster.
 
 ```sh
-# Set up dev cluster
-kind create cluster --config k8s/kind_config.yaml
-
-# Set up dev vault install
-helm install vault hashicorp/vault --version 0.25.0 --values k8s/dev_values.yaml
-
-### Set up a port-forward into your cluster
-kubectl port-forward svc/vault 8200:8200
+./bootstrap.sh
 ```
 
 ## Labs
@@ -38,9 +30,5 @@ kubectl port-forward svc/vault 8200:8200
 ## Clean up
 
 ```sh
-# To remove Vault
-helm uninstall vault
-
-# To delete the kind cluster
-kind delete cluster
+./destroy.sh
 ```
