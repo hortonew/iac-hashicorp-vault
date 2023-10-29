@@ -44,7 +44,7 @@ roles = {
       {
         path         = "secret/data/*"
         capabilities = ["create", "read", "update", "delete", "list"]
-        description  = "View customer secrets"
+        description  = "CRUD on all secrets"
       },
     ]
   }
