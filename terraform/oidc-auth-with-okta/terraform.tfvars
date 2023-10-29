@@ -2,7 +2,7 @@
 # TF_VAR_okta_client_secret = ""
 
 # Vault
-vault_addr = "http://localhost:8200"
+vault_addr = "http://127.0.0.1:8200"
 
 # Okta / OIDC
 okta_base_url      = "okta.com"

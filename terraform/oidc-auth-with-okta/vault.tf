@@ -1,3 +1,11 @@
+resource "vault_audit" "file_audit" {
+  type = "file"
+  options = {
+    file_path = "stdout"
+  }
+}
+
+
 data "vault_policy_document" "policy_content" {
   for_each = { for k, v in var.roles : k => v if k != "default" }
 
@@ -41,7 +49,7 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
 
   allowed_redirect_uris = [
     "${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.okta_oidc.path}/oidc/callback",
-    "http://localhost:8250/oidc/callback",
+    "http://127.0.0.1:8250/oidc/callback",
   ]
 
   user_claim      = "sub"
